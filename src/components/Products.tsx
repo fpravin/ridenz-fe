@@ -12,7 +12,7 @@ const Products = () => {
         console.log(res.data);
         setProducts(res.data);
       })
-      .catch((e) => {});
+      .catch((e) => { });
   }, []);
 
   return (
