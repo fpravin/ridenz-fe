@@ -1,14 +1,58 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+import Login from "./pages/Login";
+import Products from "./pages/Products";
+import SignUp from "./pages/SignUp";
+import User from "./pages/User";
+import DasboardRoot from "./components/DashboardRoot";
+import Dashboard from "./pages/Dashboard";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Login />,
+  },
+  {
+    path: "/signup",
+    element: <SignUp />
+  },
+  {
+    path: '/dashboard',
+    element: <DasboardRoot />,
+    children: [
+      {
+        path: "",
+        element: <Dashboard />
+      },
+      {
+        path: "user",
+        element: <User />
+      },
+      {
+        path: "products",
+        element: <Products />
+      },
+    ]
+  }
+]);
+
+
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    {/* <App /> */}
+    <RouterProvider
+      router={router}
+    // fallbackElement={<BigSpinner />}
+    />
   </React.StrictMode>
 );
 

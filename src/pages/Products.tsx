@@ -1,15 +1,14 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { User } from "../interfaces/users";
+import { Product } from "../interfaces/products";
 
 const Products = () => {
-  const [products, setProducts] = useState<User[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
     axios
-      .get("http://localhost:4000/users")
+      .get("http://localhost:4000/products")
       .then((res) => {
-        console.log(res.data);
         setProducts(res.data);
       })
       .catch((e) => { });
@@ -20,9 +19,9 @@ const Products = () => {
       <h1>Shop Now</h1>
       <div className="product-list">
         {products.map((product) => (
-          <div className="product" key={product.id}>
-            <h2>{product.firstName}</h2>
-            <p>{product.lastName}</p>
+          <div className="product" key={product.productId}>
+            <h2>{product.name}</h2>
+            <p>{product.description}</p>
           </div>
         ))}
       </div>
